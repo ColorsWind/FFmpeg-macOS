@@ -3,6 +3,8 @@ import os
 import pathlib
 import shutil
 
+__TAG__ = "n5.0.1"
+
 if __name__ == "__main__":
     parser = ArgumentParser(description="Package the generated files into ZIP.")
     parser.add_argument("--dir", type=str, default=os.getcwd(), help='indicate FFmpeg dir.')
