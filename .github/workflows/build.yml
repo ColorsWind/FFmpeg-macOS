@@ -20,6 +20,12 @@ jobs:
           - os: macos-11
             tag: n5.0.1
     steps:
+      - name: Install Dependence
+        id: install-dependence
+        shell: pwsh
+        run: |
+          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+          brew install nasm
       - name: Checkin
         id: checkin
         uses: actions/checkout@v3

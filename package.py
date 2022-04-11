@@ -2,7 +2,6 @@ from argparse import ArgumentParser
 import os
 import pathlib
 import shutil
-import sys
 
 if __name__ == "__main__":
     parser = ArgumentParser(description="Package the generated files into ZIP.")
