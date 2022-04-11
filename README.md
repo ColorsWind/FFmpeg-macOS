@@ -9,7 +9,7 @@ cd ffmpeg
 git checkout n5.0.1
 python ../build-script/make_compile.py 
 python ../build-script/make_universal.py
-python ../package.py --tag n5.0.1
+python ../build-script/package.py --tag n5.0.1
 ```
 
 ## Download prebuild 
