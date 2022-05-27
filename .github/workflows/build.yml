@@ -39,10 +39,10 @@ jobs:
         id: build
         shell: pwsh
         run: |
-          mkdir /Library/FFmpeg/
-          python3 make_compile.py --dir /Library/FFmpeg
-          python3 make_universal.py --dir /Library/FFmpeg
-          python3 package.py --dir /Library/FFmpeg --tag ${{ matrix.tag }}
+          mkdir ~/FFmpeg/
+          python3 make_compile.py --dir ~/FFmpeg/
+          python3 make_universal.py --dir ~/FFmpeg/
+          python3 package.py --dir ~/FFmpeg/ --tag ${{ matrix.tag }}
       - uses: actions/upload-artifact@v2
         with:
           name: FFmpeg-${{ matrix.tag }}
