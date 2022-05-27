@@ -4,6 +4,26 @@ import sys
 import os
 import pathlib
 
+def execute(command):
+    print(command, file=sys.stderr)
+    os.system(command)
+
+def create_universal_binary(x86_path, arm_path, universal_path):
+    execute(f"lipo -create -arch arm64 {arm_path} -arch x86_64 {x86_path} -output {universal_path}")
+    with os.popen(f"otool -L {arm_path}") as p:
+        query_out = p.readlines()
+    execute(f"install_name_tool {universal_path} -id {universal_path}")
+    for line in query_out:
+        line = line.strip().split(" ")[0]
+        if "install_arm64" in line:
+            execute(f"install_name_tool {universal_path} -change {line} {line.replace('install_arm64', 'install_universal')}")
+    with os.popen(f"otool -L {x86_path}") as p:
+        query_out = p.readlines()
+    for line in query_out:
+        line = line.strip().split(" ")[0]
+        if "install_x86_64" in line:
+            execute(f"install_name_tool {universal_path} -change {line} {line.replace('install_x86_64', 'install_universal')}")
+
 if __name__ == "__main__":
     parser = ArgumentParser(description="Use lipo tool to turn into universal binaries.")
     parser.add_argument("--dir", type=str, default=os.getcwd(), help='indicate FFmpeg dir.')
@@ -29,8 +49,6 @@ if __name__ == "__main__":
                 real = f.resolve()
                 os.symlink(real.name, target)
             elif target.suffix in {'.dylib', '.a'} or len(target.suffix) == 0 and os.access(f, os.X_OK):
-                command = f"lipo -create -arch arm64 {install_apple_dir / relative} -arch x86_64 {install_intel_dir / relative} -output {target} "
-                print(f"Execute: {command}")
-                os.system(command)
+                create_universal_binary(install_intel_dir / relative, install_apple_dir / relative, target)
             else:
                 shutil.copy2(f, target, follow_symlinks=False)
