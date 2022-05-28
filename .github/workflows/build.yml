@@ -26,31 +26,31 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           expire-in: 15days
 
-      - name: Install Dependence
-        id: install-dependence
-        shell: pwsh
-        run: |
-          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-          brew install nasm
-
-      - name: CheckOut
-        id: checkout
-        uses: actions/checkout@v3
-
-      - name: Clone FFmpeg
-        uses: actions/checkout@v3
-        with:
-          repository: 'FFmpeg/FFmpeg'
-          ref: ${{ matrix.tag }}
-          path: 'ffmpeg'
-
-      - name: Build project
-        id: build
-        shell: pwsh
-        run: |
-          python3 make_compile.py --ffmpeg_dir ffmpeg --target_dir ffmpeg
-          python3 make_universal.py --dir ffmpeg
-          python3 package.py --dir ffmpeg --tag ${{ matrix.tag }}
+#      - name: Install Dependence
+#        id: install-dependence
+#        shell: pwsh
+#        run: |
+#          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+#          brew install nasm
+#
+#      - name: CheckOut
+#        id: checkout
+#        uses: actions/checkout@v3
+#
+#      - name: Clone FFmpeg
+#        uses: actions/checkout@v3
+#        with:
+#          repository: 'FFmpeg/FFmpeg'
+#          ref: ${{ matrix.tag }}
+#          path: 'ffmpeg'
+#
+#      - name: Build project
+#        id: build
+#        shell: pwsh
+#        run: |
+#          python3 make_compile.py --ffmpeg_dir ffmpeg --target_dir ffmpeg
+#          python3 make_universal.py --dir ffmpeg
+#          python3 package.py --dir ffmpeg --tag ${{ matrix.tag }}
 
       - uses: actions/upload-artifact@v2
         with:
