@@ -3,7 +3,6 @@ import os
 import pathlib
 import shutil
 
-__TAG__ = "n5.0.1"
 
 if __name__ == "__main__":
     parser = ArgumentParser(description="Package the generated files into ZIP.")

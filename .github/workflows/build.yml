@@ -50,4 +50,6 @@ jobs:
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: ${{ github.workspace }}/*.zip
+          files: |
+            ${{ github.workspace }}/*.zip
+            ${{ github.workspace }}/install.py
