@@ -34,9 +34,9 @@ jobs:
 #          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 #          brew install nasm
 #
-#      - name: CheckOut
-#        id: checkout
-#        uses: actions/checkout@v3
+      - name: CheckOut
+        id: checkout
+        uses: actions/checkout@v3
 #
 #      - name: Clone FFmpeg
 #        uses: actions/checkout@v3
