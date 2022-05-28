@@ -6,15 +6,15 @@ import shutil
 
 if __name__ == "__main__":
     parser = ArgumentParser(description="Package the generated files into ZIP.")
-    parser.add_argument("--dir", type=str, default=os.getcwd(), help='indicate FFmpeg dir.')
+    parser.add_argument("--dir", type=str, default=os.getcwd(), help='indicate target dir.')
     parser.add_argument("--tag", type=str, default="UNKNOWN", help='indicate FFmpeg tag.')
     args = parser.parse_args()
-    ffmpeg_dir = pathlib.Path(args.dir).absolute()
+    target_dir = pathlib.Path(args.dir).absolute()
     tag = args.tag
-    print(f"Packaging... {ffmpeg_dir} {tag}")
-    install_intel_dir = ffmpeg_dir / "install_x86_64"
-    install_apple_dir = ffmpeg_dir / "install_arm64"
-    install_universal_dir = ffmpeg_dir / "install_universal"
+    print(f"Packaging... {target_dir} {tag}")
+    install_intel_dir = target_dir / "install_x86_64"
+    install_apple_dir = target_dir / "install_arm64"
+    install_universal_dir = target_dir / "install_universal"
 
     shutil.make_archive(f"FFmpeg-shared-{tag}-OSX-arm64", "zip", install_apple_dir)
     print("Finished arm64.")

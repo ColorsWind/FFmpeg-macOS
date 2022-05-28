@@ -12,9 +12,11 @@ def execute(command: str):
 
 if __name__ == "__main__":
     parser = ArgumentParser(description="Configure & Make & Install FFmpeg.")
-    parser.add_argument("--dir", type=str, default=os.getcwd(), help='indicate FFmpeg dir.')
+    parser.add_argument("--ffmpeg_dir", type=str, default=os.getcwd(), help='indicate FFmpeg dir.')
+    parser.add_argument("--target_dir", type=str, default=os.getcwd(), help='indicate target dir.')
     args = parser.parse_args()
-    ffmpeg_dir = pathlib.Path(args.dir).absolute()
+    ffmpeg_dir = pathlib.Path(args.ffmpeg_dir).absolute()
+    target_dir = pathlib.Path(args.target_dir).absolute()
     print(f"Compile... {ffmpeg_dir}")
 
 
@@ -27,7 +29,9 @@ if __name__ == "__main__":
         n_cpu = cpu_count()
         print("Configure project.")
         execute(
-            f"cd {ffmpeg_dir} && ./configure --enable-cross-compile --prefix={ffmpeg_dir / ('install_' + arch + '/')} --enable-shared --disable-static --arch={arch} --cc='clang -arch {arch}'")
+            f"cd {ffmpeg_dir} && ./configure --enable-cross-compile --prefix={target_dir / ('install_' + arch + '/')} "
+            f"--enable-shared --disable-static --arch={arch} --cc='clang -arch {arch}'"
+        )
         print(f"Make project ({n_cpu} threads).")
         execute(f"cd {ffmpeg_dir} && make -j{n_cpu}")
         print(f"Install project.")

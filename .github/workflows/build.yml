@@ -48,7 +48,7 @@ jobs:
         id: build
         shell: pwsh
         run: |
-          python3 make_compile.py --dir ffmpeg
+          python3 make_compile.py --ffmpeg_dir ffmpeg --target_dir ffmpeg
           python3 make_universal.py --dir ffmpeg
           python3 package.py --dir ffmpeg --tag ${{ matrix.tag }}
 
