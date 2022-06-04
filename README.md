@@ -2,17 +2,40 @@
 FFmpeg shared universal binaries (x86_64 and arm64) for macOS.
 
 ## Usage
-```bash
-git clone git@github.com:ColorsWind/FFmpeg-macOS.git build-script
-git clone git@github.com:FFmpeg/FFmpeg.git ffmpeg
-cd ffmpeg
-git checkout n5.0.1
-python ../build-script/make_compile.py 
-python ../build-script/make_universal.py
-python ../build-script/package.py --tag n5.0.1
-```
 
-## Download prebuild
+You may compile it by yourself or download and install prebuild binary.
+
+- **Compile FFmpeg by yourself.**
+
+    By default, our script will compile FFmpeg with `--enable-shared --disable-static`, if you want to use custom flags, you can edit `make_compile.py`.
+    
+    Available options: `--ffmpeg_dir --target_dir --dir`, use `-h` to see help.
+    
+    ```bash
+    git clone git@github.com:ColorsWind/FFmpeg-macOS.git build-script
+    git clone git@github.com:FFmpeg/FFmpeg.git ffmpeg
+    cd ffmpeg
+    git checkout n5.0.1
+    python ../build-script/make_compile.py 
+    python ../build-script/make_universal.py
+    python ../build-script/package.py --tag n5.0.1
+    ```
+
+- **Install Prebuilt Binary**
+
+  You may download from [release](https://github.com/ColorsWind/FFmpeg-macOS/releases/) and install it by `install.py`.
+
+  ```bash
+  wget https://github.com/ColorsWind/FFmpeg-macOS/releases/download/n5.0.1-patch3/FFmpeg-shared-n5.0.1-OSX-universal.zip
+  wget https://github.com/ColorsWind/FFmpeg-macOS/releases/download/n5.0.1-patch3/install.py
+  python install.py FFmpeg-shared-n5.0.1-OSX-universal.zip ~/ffmpeg-n5.0.1
+  ```
+  Then, FFmpeg-shared will be installed on `~/ffmpeg-n5.0.1`.
+
+  
+
+## Release
+
 Latest: tag n5.0.1
 https://github.com/ColorsWind/FFmpeg-macOS/releases
 
