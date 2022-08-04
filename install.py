@@ -36,5 +36,6 @@ if __name__ == "__main__":
     else:
         shutil.copytree(ffmpeg_path, target_dir)
     for f in target_dir.rglob("*"):
-        if f.is_file() and (f.suffix in {'.dylib', '.a'} or len(f.suffix) == 0 and os.access(f, os.X_OK)):
+
+        if f.is_file() and (f.suffix in {'.dylib', '.a'} or len(f.suffix) == 0 and f.parent.absolute().name == "bin"):
             rename_dylib_reference(target_dir, f)
