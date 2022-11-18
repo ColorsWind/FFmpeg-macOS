@@ -30,7 +30,7 @@ if __name__ == "__main__":
         print("Configure project.")
         execute(
             f"cd {ffmpeg_dir} && ./configure --enable-cross-compile --prefix={target_dir / ('install_' + arch + '/')} "
-            f"--enable-shared --disable-static --arch={arch} --cc='clang -arch {arch}'"
+            f"--enable-shared --disable-static --enable-libvorbis --enable-libvpx --arch={arch} --cc='clang -arch {arch}'"
         )
         print(f"Make project ({n_cpu} threads).")
         execute(f"cd {ffmpeg_dir} && make -j{n_cpu}")

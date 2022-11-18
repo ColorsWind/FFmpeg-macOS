@@ -12,13 +12,13 @@ You may compile it by yourself or download and install prebuild binary.
     Available options: `--ffmpeg_dir --target_dir --dir`, use `-h` to see help.
     
     ```bash
-    git clone git@github.com:ColorsWind/FFmpeg-macOS.git build-script
+    git clone git@github.com:embodyme/FFmpeg-macOS.git build-script
     git clone git@github.com:FFmpeg/FFmpeg.git ffmpeg
     cd ffmpeg
-    git checkout n5.0.1
+    git checkout n4.1
     python ../build-script/make_compile.py 
     python ../build-script/make_universal.py
-    python ../build-script/package.py --tag n5.0.1
+    python ../build-script/package.py --tag n4.1
     ```
 
 - **Install Prebuilt Binary**
