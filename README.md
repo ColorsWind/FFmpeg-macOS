@@ -12,8 +12,8 @@ You may compile it by yourself or download and install prebuild binary.
     Available options: `--ffmpeg_dir --target_dir --dir`, use `-h` to see help.
     
     ```bash
-    git clone git@github.com:embodyme/FFmpeg-macOS.git build-script
-    git clone git@github.com:FFmpeg/FFmpeg.git ffmpeg
+    git clone https://github.com/embodyme/FFmpeg-macOS.git build-script
+    git clone https://github.com/FFmpeg/FFmpeg.git ffmpeg
     cd ffmpeg
     git checkout n4.1
     python ../build-script/make_compile.py 
