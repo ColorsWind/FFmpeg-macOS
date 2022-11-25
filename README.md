@@ -33,6 +33,15 @@ You may compile it by yourself or download and install prebuild binary.
   Then, FFmpeg-shared will be installed on `~/ffmpeg-n5.0.1`.
 
   
+## Custom
+
+If you want to make changed compile parameters, (e.g. add decoders support or build static library), here is a description about those scripts.
+
+`make_compile.py` configure and cross compile FFmpeg.
+`make_universal.py` use `lipo` to merge x86_64 and ARM64 binary, and then use `install_name_tool` to fix library load path.
+`install.py` unzip and use `install_name_tool` to fix library load path.
+
+
 
 ## Release
 
