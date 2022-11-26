@@ -13,26 +13,26 @@ def execute(command):
 def create_universal_binary(x86_path, arm_path, universal_path):
     execute(f"lipo -create -arch arm64 {arm_path} -arch x86_64 {x86_path} -output {universal_path}")
 
-    with os.popen(f"otool -L {arm_path}") as p:
-        query_out = p.readlines()
-    execute(f"install_name_tool {universal_path} -id {universal_path}")
-    for line in query_out:
-        line = line.strip().split(" ")[0]
-        if "install_arm64" in line:
-            execute(
-                f"install_name_tool {universal_path} "
-                f"-change {line} {line.replace('install_arm64', 'install_universal')}"
-            )
-
-    with os.popen(f"otool -L {x86_path}") as p:
-        query_out = p.readlines()
-    for line in query_out:
-        line = line.strip().split(" ")[0]
-        if "install_x86_64" in line:
-            execute(
-                f"install_name_tool {universal_path} "
-                f"-change {line} {line.replace('install_x86_64', 'install_universal')}"
-            )
+    # with os.popen(f"otool -L {arm_path}") as p:
+    #     query_out = p.readlines()
+    # execute(f"install_name_tool {universal_path} -id {universal_path}")
+    # for line in query_out:
+    #     line = line.strip().split(" ")[0]
+    #     if "install_arm64" in line:
+    #         execute(
+    #             f"install_name_tool {universal_path} "
+    #             f"-change {line} {line.replace('install_arm64', 'install_universal')}"
+    #         )
+    #
+    # with os.popen(f"otool -L {x86_path}") as p:
+    #     query_out = p.readlines()
+    # for line in query_out:
+    #     line = line.strip().split(" ")[0]
+    #     if "install_x86_64" in line:
+    #         execute(
+    #             f"install_name_tool {universal_path} "
+    #             f"-change {line} {line.replace('install_x86_64', 'install_universal')}"
+    #         )
 
 
 if __name__ == "__main__":

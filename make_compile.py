@@ -30,7 +30,7 @@ if __name__ == "__main__":
         print("Configure project.")
         execute(
             f"cd {ffmpeg_dir} && ./configure --enable-cross-compile --prefix={target_dir / ('install_' + arch + '/')} "
-            f"--enable-shared --disable-static "
+            f"--install-name-dir=@rpath --enable-shared --disable-static "
             # f"--enable-libvorbis --enable-libvpx "
             f"--arch={arch} --cc='clang -arch {arch}'"
         )
