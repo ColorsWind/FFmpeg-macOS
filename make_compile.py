@@ -30,7 +30,16 @@ if __name__ == "__main__":
         print("Configure project.")
         execute(
             f"cd {ffmpeg_dir} && ./configure --enable-cross-compile --prefix={target_dir / ('install_' + arch + '/')} "
-            f"--install-name-dir=@rpath --enable-shared --disable-static "
+            f"--install-name-dir=@rpath --enable-shared --disable-static --enable-libvorbis --enable-libvpx "
+            f"--enable-pic --disable-doc --enable-debug --enable-runtime-cpudetect --enable-asm --enable-x86asm "
+            f"--target-os=darwin --enable-ffmpeg --disable-ffplay --enable-ffprobe --disable-alsa --enable-avcodec "
+            f"--enable-avdevice --enable-avformat --enable-avfilter --disable-postproc --enable-swresample --enable-swscale "
+            f"--disable-libaom --disable-libass --disable-avisynth --disable-bzlib --disable-libfdk-aac --disable-libfontconfig "
+            f"--disable-libfreetype --disable-libfribidi --disable-iconv --disable-libilbc --disable-lzma --disable-libmp3lame --disable-libmodplug "
+            f"--disable-cuda --disable-nvenc --disable-nvdec  --disable-cuvid --disable-ffnvcodec --disable-opencl --disable-opengl --disable-libopenh264 "
+            f"--disable-libopenjpeg --disable-openssl --disable-libopus --disable-sdl2 --disable-libsnappy --disable-libsoxr --disable-libspeex --disable-libssh "
+            f"--disable-libtensorflow --disable-libtesseract --disable-libtheora --disable-libvorbis --enable-libvpx --disable-libwebp --disable-libx264 "
+            f"--disable-libx265 --disable-libxml2 --disable-zlib --disable-vdpau "
             # f"--enable-libvorbis --enable-libvpx "
             f"--arch={arch} --cc='clang -arch {arch}'"
         )
