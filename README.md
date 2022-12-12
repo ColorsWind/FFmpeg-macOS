@@ -15,10 +15,10 @@ You may compile it by yourself or download and install prebuild binary.
     git clone https://github.com/embodyme/FFmpeg-macOS.git build-script
     git clone https://github.com/FFmpeg/FFmpeg.git ffmpeg
     cd ffmpeg
-    git checkout n4.1
+    git checkout n4.4.1
     python ../build-script/make_compile.py 
     python ../build-script/make_universal.py
-    python ../build-script/package.py --tag n4.1
+    python ../build-script/package.py --tag n4.4.1
     ```
 
 - **Install Prebuilt Binary**
